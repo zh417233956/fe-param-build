@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    原model：
+    <pre id="show-before"></pre>
+    <br/> 调用后model:
+    <pre id="show-after"></pre>
+</body>
+<script src="./paramBuild.js"></script>
+<script>
+    var model = {
+        UserId: 1,
+    };
+    console.log(model);
+    var showinfo1 = document.getElementById("show-before");
+    showinfo1.innerHTML = JSON.stringify(model);
+
+    var builder = new ParamBuild();
+    builder.build(model);
+
+    console.log(model);
+    var showinfo2 = document.getElementById("show-after");
+    showinfo2.innerHTML = JSON.stringify(model);
+</script>
+
+</html>
