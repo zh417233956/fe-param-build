@@ -1,16 +1,23 @@
 class ParamBuild {
+    //需要检查的key及对应的默认值 
+    private modelkey: any = {
+        PageIndex: 1,
+        PageSize: 20,
+        Filters: [],
+        Orders: []
+    };
+    //修改需要补全的key
+    init(obj: any): void {
+        this.modelkey = obj;
+    }
+    //进行检查构建补全
     build(obj: any): any {
-        if (!("PageIndex" in obj)) {
-            obj["PageIndex"] = 1;
-        }
-        if (!obj.hasOwnProperty("PageSize")) {
-            obj.PageSize = 20;
-        }
-        if (!obj.hasOwnProperty("Filters")) {
-            obj.Filters = [];
-        }
-        if (!obj.hasOwnProperty("Orders")) {
-            obj.Orders = [];
+        for (var element in this.modelkey) {
+            console.log(element);
+            console.log(this.modelkey[element]);
+            if (!obj.hasOwnProperty(element)) {
+                obj[element] = this.modelkey[element];
+            }
         }
         return obj;
     }
@@ -21,6 +28,7 @@ class ParamBuild {
 // let model = {
 //     a: 1
 // };
+// debugger;
 // let result = builder.build(model);
 // console.log(result)
 
